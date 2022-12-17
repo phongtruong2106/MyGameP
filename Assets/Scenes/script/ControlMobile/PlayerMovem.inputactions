@@ -1,0 +1,168 @@
+{
+    "name": "PlayerMovem",
+    "maps": [
+        {
+            "name": "Land",
+            "id": "ac57c693-abf8-4471-acf2-1f2415d285d0",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "8bf12c44-dbcc-4067-9cfe-76249cd91fd9",
+                    "expectedControlType": "",
+                    "processors": "AxisDeadzone",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "9d474685-92b7-40a9-a0a8-025a61f91c06",
+                    "expectedControlType": "Button",
+                    "processors": "AxisDeadzone",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ws",
+                    "type": "Button",
+                    "id": "94517869-97e9-48b6-9041-2afcd68d0a11",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "5c406a12-bd18-48cc-8d92-16736bd7bccd",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "67935256-89a6-47d5-9c17-6e3be2e6fc1a",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "02b41d95-288d-4d1b-a5c6-125e6c2a0c42",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "AxisDeadzone",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis AD",
+                    "id": "00abc576-91fb-480b-b472-d97a8883616f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a0902b70-9c40-45ff-9314-224913b8f8a6",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "729f3650-a011-4a91-b4f7-760549f71a57",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "6063c10a-6863-4b2a-a441-f6d660dc24af",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "989f5eb2-6866-4b05-929d-b053b78cc934",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ws",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "binding",
+                    "id": "b63215f6-0b37-4c1d-8cd8-2c74a9e9ae83",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": " KeyBoard and Mouse",
+                    "action": "ws",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "651b2aef-4b46-46e5-88ec-66ce28b1e7a4",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": " KeyBoard and Mouse",
+                    "action": "ws",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": " KeyBoard and Mouse",
+            "bindingGroup": " KeyBoard and Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

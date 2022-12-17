@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  - Enemy
+  - Coin
+  - door
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Grounded
+  - Player
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 3135432211
+    locked: 0
+  - name: backGrounded
+    uniqueID: 3083183267
+    locked: 0
+  - name: icon
+    uniqueID: 2098561405
+    locked: 0
+  - name: player
+    uniqueID: 103268317
+    locked: 0
+  - name: grouned
+    uniqueID: 3856568859
+    locked: 0
