@@ -69,14 +69,12 @@ public class DataPersistenceManager : MonoBehaviour
     {
         //dang ki
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnLoaded;
     }
 
     private void OnDisable()
     {
         //huy dang ki
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnLoaded;
     }
 
     //phuong thuc scene se duoc load
@@ -88,13 +86,6 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
-    //khong load scene 
-    public void OnSceneUnLoaded(Scene scene)
-    {
-        Debug.Log("OnSceneUnLoaded Called");
-        //du lieu duoc luu moi khi scene khong duoc load va ghi nho nos
-        SaveGame();
-    }
 
     public void ChangeSelectedProfileId(string newProfileId)
     {

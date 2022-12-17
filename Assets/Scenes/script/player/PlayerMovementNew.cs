@@ -112,4 +112,6 @@ public class PlayerMovementNew : MonoBehaviour, IDataPersistence
             cm.coinCount++;
         }
     }
+
+
 }

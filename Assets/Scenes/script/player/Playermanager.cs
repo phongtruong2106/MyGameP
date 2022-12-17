@@ -108,10 +108,9 @@ public class Playermanager : MonoBehaviour
     //game pause
     public void PauseGame()
     {
-        if(pausegame == true)
-        {
+      
             Time.timeScale = 0;
-        }
+        
     }
 
     //resume Game

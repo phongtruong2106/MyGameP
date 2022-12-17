@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class SaveSlotsMenu : meNu
 {
     [Header("Menu Navigation")]
@@ -38,6 +39,8 @@ public class SaveSlotsMenu : meNu
               DataPersistenceManager.instance.NewGame();
         }
 
+        //luu tru game toan thoi gian khi load scene
+        DataPersistenceManager.instance.SaveGame();
        
 
         //Load the scene - which will in turn save the game because of OnSceneUnLoad() in the DataPersistenceManagere
@@ -83,8 +86,11 @@ public class SaveSlotsMenu : meNu
                 }
             }
         }
+
+
+        Button firstSelectedButton = firstSelected.GetComponent<Button>();
         //set the firts selected button
-        StartCoroutine(this.SetFirstSelected(firstSelected));
+        this.SetFirstSelected(firstSelectedButton);
 
     }
 
