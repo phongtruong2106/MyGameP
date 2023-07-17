@@ -15,7 +15,7 @@ public class Playermanager : MonoBehaviour
     public static int numberOfCoint;
     public static int numberOfDeath;
     public static Vector2 lastCheckPointPos = new Vector2(-3, 0);
-    public bool pausegame = false;
+   
 
 
     //movent
@@ -24,8 +24,7 @@ public class Playermanager : MonoBehaviour
     public static Playermanager instance { get; private set; }
 
     public TextMeshProUGUI cointsTEXT;
-    [SerializeField] GameObject pauseGame;
-
+   
 
 
     private void Awake()
@@ -102,20 +101,5 @@ public class Playermanager : MonoBehaviour
     public void ReplayLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-
-    //game pause
-    public void PauseGame()
-    {
-      
-            Time.timeScale = 0;
-        
-    }
-
-    //resume Game
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
     }
 }

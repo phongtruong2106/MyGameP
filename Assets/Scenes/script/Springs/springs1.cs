@@ -6,7 +6,8 @@ public class springs1 : MonoBehaviour
 {
 
     private Animator anim;
-   [SerializeField] private float bounce;
+    [SerializeField]
+    private float jumpforce = 1f;
 
     private void Start()
     {
@@ -15,19 +16,29 @@ public class springs1 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.transform.CompareTag("Player"))
         {
-            anim.SetBool("springsUp", false);
+            anim.SetBool("OnSpring", true);
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
-            anim.SetBool("springsUp", true);
-        }
+         if (collision.transform.CompareTag("Player"))
+            {
+                anim.SetBool("OnSpring", false);
+            }
+
+            if(collision.relativeVelocity.y <= 0f)
+            {
+                    Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
+                    if(rb != null)
+                    {
+                        Vector2 velocity = rb.velocity;
+                        velocity.y = jumpforce;
+                        rb.velocity = velocity;
+                    }
+            }
     }
 }

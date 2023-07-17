@@ -4,44 +4,41 @@ using UnityEngine;
 
 public class PloatingMov : MonoBehaviour
 {
-    private Vector3 locationA;
-    private Vector3 locationB;
-    private Vector3 nextLocation;
+    [SerializeField] private Transform posA, posB;
+    [SerializeField] private float Speed;
+    private Vector2 targetPos;
 
-
-    [SerializeField] private Transform platform;
-    [SerializeField] private Transform MovingToLocation;
-
-    [SerializeField] private float speed;
-
-
-
-    private void Start()
-    {
-        locationA = platform.localPosition;
-        locationB = MovingToLocation.localPosition;
-        nextLocation = locationB;
+    private void Start() {
+        targetPos = posB.position;
     }
 
-    private void Update()
-    {
-        Move();
-        
+    private void Update() {
+        if(Vector2.Distance(transform.position, posA.position) < .1f) targetPos = posB.position;
+
+        if(Vector2.Distance(transform.position, posB.position) < .1f) targetPos = posA.position;
+
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, Speed * Time.deltaTime);
     }
 
-    private void Move()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        platform.localPosition = Vector3.MoveTowards(platform.localPosition, nextLocation, speed * Time.deltaTime);
-
-        if(Vector3.Distance(platform.localPosition, nextLocation) <= 0.1)
+        if(collision.CompareTag("Player"))
         {
-             ChangePosition();
+            collision.transform.SetParent(this.transform);
         }
     }
-    private void ChangePosition()
-    {
-        nextLocation = nextLocation != locationA ? locationA : locationB;
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            collision.transform.SetParent(null);
+        }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(posA.position,posB.position);
+    }
 }

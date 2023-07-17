@@ -8,7 +8,7 @@ public class PlayerCollisent : MonoBehaviour
         if(collision.transform.tag == "Enemy")
         {
             Playermanager.isGameOver = true;
-            audioManager.instance.Play("GameOver");
+            // audioManager.instance.Play("GameOver");
             gameObject.SetActive(false);
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovementNew : MonoBehaviour, IDataPersistence
 {
@@ -44,18 +44,16 @@ public class PlayerMovementNew : MonoBehaviour, IDataPersistence
         controls.Land.Jump.performed += ctx => Jump();
     }
 
-     private void FixedUpdate()
+   private void FixedUpdate()
     {
-      
-             isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-             animator.SetBool("isGrounded", isGrounded);
+        isGrounded = Physics2D.BoxCast(groundCheck.position, groundCheck.localScale, 0f, Vector2.down, 0.1f, groundLayer).collider != null;
+        animator.SetBool("isGrounded", isGrounded);
 
-              playerRB.velocity = new Vector2(direction * speed * Time.fixedDeltaTime, playerRB.velocity.y);
-                animator.SetFloat("speed", Mathf.Abs(direction));
+        playerRB.velocity = new Vector2(direction * speed * Time.fixedDeltaTime, playerRB.velocity.y);
+        animator.SetFloat("speed", Mathf.Abs(direction));
 
-                if (isFacingRight && direction < 0 || !isFacingRight && direction > 0)
-                Flip();
-       
+        if (isFacingRight && direction < 0 || !isFacingRight && direction > 0)
+            Flip();
     }
 
     void Flip()
