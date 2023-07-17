@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovementNew : MonoBehaviour, IDataPersistence
 {
@@ -24,14 +25,10 @@ public class PlayerMovementNew : MonoBehaviour, IDataPersistence
 
     [SerializeField] private Rigidbody2D playerRB;
     [SerializeField] private Animator animator;
+   
 
 
     [SerializeField] private bool isFacingRight = true;
-
-    // other
-    private bool facingRight = true;
-    private bool disableMovement = false;
-
     [SerializeField]private CoinManager cm;
 
     private void Awake()
@@ -49,14 +46,16 @@ public class PlayerMovementNew : MonoBehaviour, IDataPersistence
 
      private void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-        animator.SetBool("Grounded", isGrounded);
+      
+             isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+             animator.SetBool("isGrounded", isGrounded);
 
-        playerRB.velocity = new Vector2(direction * speed * Time.fixedDeltaTime, playerRB.velocity.y);
-        animator.SetFloat("speed", Mathf.Abs(direction));
+              playerRB.velocity = new Vector2(direction * speed * Time.fixedDeltaTime, playerRB.velocity.y);
+                animator.SetFloat("speed", Mathf.Abs(direction));
 
-        if (isFacingRight && direction < 0 || !isFacingRight && direction > 0)
-            Flip();
+                if (isFacingRight && direction < 0 || !isFacingRight && direction > 0)
+                Flip();
+       
     }
 
     void Flip()

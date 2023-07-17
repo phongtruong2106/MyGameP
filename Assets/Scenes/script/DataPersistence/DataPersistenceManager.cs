@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 
+
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("Debugging ")]
@@ -163,12 +164,13 @@ public class DataPersistenceManager : MonoBehaviour
         // update the current scene in our data
         Scene scene = SceneManager.GetActiveScene();
         // DON'T save this for certain scenes, like our main menu scene
-        if (!scene.name.Equals("Main Menu"))
+        if (!scene.name.Equals("MenuStart"))
         {
             _gameData1.currentSceneName = scene.name;
         }
 
         // save that data to a file using the data handler 
+        dataHandle.Save(_gameData1, selectedProfileID);
 
     }
 
@@ -180,7 +182,9 @@ public class DataPersistenceManager : MonoBehaviour
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
-        IEnumerable<IDataPersistence> dataPersistences = FindObjectsOfType<MonoBehaviour>()
+        //findObjectsofType  takes in an optional boolean to include inactive gameobjects
+
+        IEnumerable<IDataPersistence> dataPersistences = FindObjectsOfType<MonoBehaviour>(true)
             .OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistences);
@@ -198,4 +202,11 @@ public class DataPersistenceManager : MonoBehaviour
         return dataHandle.LoadAllProfiles();    
     }
 
+    public string GetSaveSceneName(){
+        if(_gameData1 == null){
+            Debug.LogError("Tried to get scene name but data was null.");
+            return null;
+        }
+        return _gameData1.currentSceneName;
+    }
 }

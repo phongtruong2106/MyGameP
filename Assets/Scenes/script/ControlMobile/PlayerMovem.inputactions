@@ -22,15 +22,6 @@
                     "processors": "AxisDeadzone",
                     "interactions": "Press",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ws",
-                    "type": "Button",
-                    "id": "94517869-97e9-48b6-9041-2afcd68d0a11",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -110,39 +101,6 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "989f5eb2-6866-4b05-929d-b053b78cc934",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ws",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "binding",
-                    "id": "b63215f6-0b37-4c1d-8cd8-2c74a9e9ae83",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": " KeyBoard and Mouse",
-                    "action": "ws",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "651b2aef-4b46-46e5-88ec-66ce28b1e7a4",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": " KeyBoard and Mouse",
-                    "action": "ws",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

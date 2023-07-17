@@ -42,9 +42,9 @@ public class SaveSlotsMenu : meNu
         //luu tru game toan thoi gian khi load scene
         DataPersistenceManager.instance.SaveGame();
        
-
-        //Load the scene - which will in turn save the game because of OnSceneUnLoad() in the DataPersistenceManagere
         SceneManager.LoadSceneAsync("level1");
+        //Load the scene - which will in turn save the game because of OnSceneUnLoad() in the DataPersistenceManagere
+        SceneManager.LoadSceneAsync(DataPersistenceManager.instance.GetSaveSceneName());
     }
 
     public void OnBackClicked()

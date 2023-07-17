@@ -44,15 +44,6 @@ public partial class @PlayerMovem : IInputActionCollection2, IDisposable
                     ""processors"": ""AxisDeadzone"",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ws"",
-                    ""type"": ""Button"",
-                    ""id"": ""94517869-97e9-48b6-9041-2afcd68d0a11"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,39 +123,6 @@ public partial class @PlayerMovem : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""989f5eb2-6866-4b05-929d-b053b78cc934"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ws"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""b63215f6-0b37-4c1d-8cd8-2c74a9e9ae83"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "" KeyBoard and Mouse"",
-                    ""action"": ""ws"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""651b2aef-4b46-46e5-88ec-66ce28b1e7a4"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "" KeyBoard and Mouse"",
-                    ""action"": ""ws"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -192,7 +150,6 @@ public partial class @PlayerMovem : IInputActionCollection2, IDisposable
         m_Land = asset.FindActionMap("Land", throwIfNotFound: true);
         m_Land_Move = m_Land.FindAction("Move", throwIfNotFound: true);
         m_Land_Jump = m_Land.FindAction("Jump", throwIfNotFound: true);
-        m_Land_ws = m_Land.FindAction("ws", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -254,14 +211,12 @@ public partial class @PlayerMovem : IInputActionCollection2, IDisposable
     private ILandActions m_LandActionsCallbackInterface;
     private readonly InputAction m_Land_Move;
     private readonly InputAction m_Land_Jump;
-    private readonly InputAction m_Land_ws;
     public struct LandActions
     {
         private @PlayerMovem m_Wrapper;
         public LandActions(@PlayerMovem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Land_Move;
         public InputAction @Jump => m_Wrapper.m_Land_Jump;
-        public InputAction @ws => m_Wrapper.m_Land_ws;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -277,9 +232,6 @@ public partial class @PlayerMovem : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
-                @ws.started -= m_Wrapper.m_LandActionsCallbackInterface.OnWs;
-                @ws.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnWs;
-                @ws.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnWs;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -290,9 +242,6 @@ public partial class @PlayerMovem : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @ws.started += instance.OnWs;
-                @ws.performed += instance.OnWs;
-                @ws.canceled += instance.OnWs;
             }
         }
     }
@@ -310,6 +259,5 @@ public partial class @PlayerMovem : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnWs(InputAction.CallbackContext context);
     }
 }
