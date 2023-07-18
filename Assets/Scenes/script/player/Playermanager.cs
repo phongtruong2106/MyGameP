@@ -10,11 +10,14 @@ using UnityEngine.InputSystem;
 
 public class Playermanager : MonoBehaviour
 {
+    
     public GameObject gameOverScreen;
+    public float startTime;
     public static bool isGameOver;
     public static int numberOfCoint;
     public static int numberOfDeath;
     public static Vector2 lastCheckPointPos = new Vector2(-3, 0);
+    public static event System.Action<bool> GameOverStateChanged;
    
 
 
@@ -38,6 +41,7 @@ public class Playermanager : MonoBehaviour
         isGameOver = false;
         numberOfCoint = PlayerPrefs.GetInt("NumberOfCoints", 0);
         GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+        startTime = Time.time;
     }
 
     public void MovePressed(InputAction.CallbackContext context)
@@ -52,6 +56,12 @@ public class Playermanager : MonoBehaviour
         }
     }
 
+    
+     public void ReplayLevel()
+    {
+        transform.position = lastCheckPointPos;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void JumpPressed(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -75,10 +85,6 @@ public class Playermanager : MonoBehaviour
     }
 
 
-    public Vector2 GetMoveDirection()
-    {
-        return lastCheckPointPos;
-    }
 
     // for any of the below 'Get' methods, if we're getting it then we're also using it,
     // which means we should set it to false so that it can't be used again until actually
@@ -95,11 +101,9 @@ public class Playermanager : MonoBehaviour
     {
         jumpPressed = false;
     }
-
-
-    //feature replay
-    public void ReplayLevel()
+    public Vector2 GetPosition()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        return transform.position;
     }
+
 }

@@ -5,48 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoad : MonoBehaviour
 { 
-    
-    // //load level cense
-    //  public int ilevelTotal;
-
-    //  public string sLevelTotal;
-
-    // public bool useIntegerToLoadLevel = false;
-
-
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     GameObject collisionGameObject = collision.gameObject;
-
-
-    //     if(collisionGameObject.gameObject.tag == "Player")
-    //     {
-    //         LoadScene();
-    //     }
-    // }
-    // private void LoadScene()
-    // {
-    //     if (useIntegerToLoadLevel)
-    //     {
-    //         SceneManager.LoadScene(ilevelTotal);
-    //     }
-    //     else
-    //     {
-    //         SceneManager.LoadScene(sLevelTotal);
-    //     }
-    // }
+    private LoadLevel loadLevel;
+    private Playermanager playermanager;
 
     private gameManager1 gamemanager;
+    private audioManager AudioManager;
+
     [SerializeField] LayerMask playermask;
 
     private void Awake(){
+        playermanager = FindObjectOfType<Playermanager>();
         gamemanager = FindObjectOfType<gameManager1>();
+        loadLevel = FindObjectOfType<LoadLevel>();
+        AudioManager = FindObjectOfType<audioManager>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision){
-        if(((1 << collision.gameObject.layer) & playermask) != 0){
+   private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & playermask) != 0)
+        {
             gamemanager.SaveData();
             gamemanager.LoadNextLevel();
+            loadLevel.SetCheckpointPosition(playermanager.GetPosition());
+            if (AudioManager != null)
+            {
+                AudioManager.PlaySFX(AudioManager.checkpoint);
+            }
+
         }
     }
 }

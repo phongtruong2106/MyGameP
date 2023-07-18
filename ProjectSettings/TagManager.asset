@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - Coin
   - door
+  - Trap
+  - Spike
+  - Complate
+  - Audio
   layers:
   - Default
   - TransparentFX

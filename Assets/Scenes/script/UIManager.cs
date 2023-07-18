@@ -1,44 +1,67 @@
+using System.Net.Mime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject PanelSetting;
+     public static UIManager instance;
+     [SerializeField]
+     private GameObject Game_Complate_Panel;
+     [SerializeField]
+     private GameObject Setting_Panel;
+     [SerializeField]
+     private GameObject gameOverScreen;
+     [SerializeField] 
+     private Text timeText;
+   
 
-    [SerializeField]
-    private GameObject PanelGameOver;
 
-    public bool pausegame = false;
-
-   private void Start() {
-        PanelSetting.SetActive(false);
-        PanelGameOver.SetActive(false);
+     private void Awake()
+     {
+          if (instance == null)
+          {
+               instance = this;
+          }
+          else
+          {
+               Destroy(this.gameObject);
+          }
+     }
+   private void Start() 
+   {      
+        Game_Complate_Panel.SetActive(false);
+        Setting_Panel.SetActive(false);
+        gameOverScreen.SetActive(false);
    }
 
-   public void OpenPanelSetting()
+   public void OpenPanelGameComeplate()
    {
-        PanelSetting.SetActive(true);
-         Time.timeScale = 0; 
+          float endTime = Time.time;
+          float elapsedTime = endTime - Playermanager.instance.startTime;
+          timeText.text = "Elapsed Time: " + elapsedTime.ToString("F2") + " seconds";
 
-         Debug.Log("Pause");
+          Game_Complate_Panel.SetActive(true);
    }
+    public void Quit_btn()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
+    }
 
-   public void Hide_PanelSetting()
-   {
-        PanelSetting.SetActive(false);
-        Time.timeScale = 1;
-   }
+    public void OpenSettingPanel()
+    {
+          Setting_Panel.SetActive(true);
+    }
 
-   public void OpenPanelGameOver()
-   {
-        PanelSetting.SetActive(true);
-   }
+    public void OpengameOver()
+    {
+          gameOverScreen.SetActive(true);
+    }
 
-   public void Hide_PanelGameOver()
-   {
-        PanelGameOver.SetActive(false);
-   }
-
+    public void Hide_Setting_panel()
+    {
+          Setting_Panel.SetActive(false);
+    }
 }

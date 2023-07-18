@@ -5,42 +5,42 @@ using UnityEngine;
 
 public class audioManager : MonoBehaviour
 {
+    public AudioSource musicSource;
 
+     [SerializeField]
+     private AudioSource SFXSource;
+
+     public AudioClip background;
+     public AudioClip jump;
+     public AudioClip death;
+     public AudioClip gameCompleted;
+     public AudioClip menu;
+     
+     public AudioClip checkpoint;
+    
     public static audioManager instance;
 
-    public Sound[] sounds;
-
-    void Awake()
+    private void Awake() 
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
+        if(instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
-        foreach (Sound s in sounds)
+        else
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            Destroy(gameObject);
         }
+        
     }
 
-    public void Play(string sound)
-    {
-        Sound s = Array.Find(sounds, item => item.name == sound);
-        s.source.Play();
+    private void Start() {
+        musicSource.clip = background;
+        musicSource.Play();
     }
-    public void Stop(string sound)
+
+    public void PlaySFX(AudioClip clip)
     {
-        Sound s = Array.Find(sounds, item => item.name == sound);
-        s.source.Stop();
+        SFXSource.PlayOneShot(clip);
     }
 }

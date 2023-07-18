@@ -7,29 +7,13 @@ using UnityEngine.UI;
 
 public class LoadLevel : MonoBehaviour
 {
-
-    [SerializeField] private GameObject loadingScreen;
-    [SerializeField] private Slider Slider;
-    public Text ProgressText;
-    
-
-    public void LoadLevels(int sceneIndex)
+    private Vector3 checkpointPosition;
+    private void Awake()
     {
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+        transform.position = checkpointPosition;
     }
-
-    IEnumerator LoadAsynchronously(int sceneIndex)
+    public void SetCheckpointPosition(Vector3 position)
     {
-        
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        loadingScreen.SetActive(true);
-        while (!operation.isDone)
-        {
-            float progess = Mathf.Clamp01(operation.progress / .9f);
-            Slider.value = progess;
-
-            ProgressText.text = progess * 100f + "%";
-            yield return null;
-        }
+        checkpointPosition = position;
     }
 }
